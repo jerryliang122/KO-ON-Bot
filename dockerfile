@@ -1,7 +1,7 @@
-FROM debian:11-slim
-RUN apt-get update && apt-get install python3 python3-pip nodejs npm -y
-COPY . /app
-WORKDIR /app
+FROM python:3.10.9
+RUN apt-get update && apt-get install nodejs npm git -y
+RUN git clone https://github.com/jerryliang122/KO-ON-Bot.git --recursive
+WORKDIR /KO-ON-Bot
 RUN cd QQMusicApi && npm install
 RUN cd NeteaseCloudMusicApi && npm install
 RUN cd MiguMusicApi && npm install 
