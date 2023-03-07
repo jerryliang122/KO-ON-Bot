@@ -1,5 +1,5 @@
 FROM python:3.10.9
-RUN apt-get update && apt-get install nodejs npm git -y
+RUN apt-get update && apt-get install nodejs npm git screen -y
 RUN git clone https://github.com/jerryliang122/KO-ON-Bot.git --recursive
 WORKDIR /KO-ON-Bot
 RUN cd QQMusicApi && npm install
