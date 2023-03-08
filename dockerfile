@@ -1,5 +1,5 @@
 FROM node:18.14.2
-RUN apt-get update && apt-get install -y python3 python3-pip ffmpeg
+RUN apt-get update && apt-get install -y python3 python3-pip ffmpeg screen
 COPY . /KO-ON-Bot
 WORKDIR /KO-ON-Bot
 RUN cd QQMusicApi && npm install
