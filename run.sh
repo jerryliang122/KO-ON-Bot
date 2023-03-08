@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+
 echo "========================"
 echo "-start    Strat the bot."
 echo "-stop     Stop the bot."
