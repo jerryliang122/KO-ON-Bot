@@ -6,4 +6,5 @@ RUN cd QQMusicApi && npm install
 RUN cd NeteaseCloudMusicApi && npm install
 RUN cd MiguMusicApi && npm install 
 RUN pip3 install -r requirements.txt
+RUN chmod +x /KO-ON-Bot/run.sh
 CMD ["bash", "-c", "./run.sh --start"]
