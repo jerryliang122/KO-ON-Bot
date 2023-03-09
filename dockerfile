@@ -18,4 +18,9 @@ RUN apt-get update && \
 ENV PYTHONUNBUFFERED=1
 
 # 运行命令
-CMD tail -f /dev/null
+CMD screen -dmS KO-ON-scheduler python3 scheduler.py && \
+    cd MiguMusicApi && screen -dmS KO-ON-MiguMusicApi npm start && cd ../ && \
+    cd QQMusicApi && screen -dmS KO-ON-QQMusicApi npm start && cd ../ && \
+    cd NeteaseCloudMusicApi && screen -dmS KO-ON-NeteaseCloudMusicApi node app.js && cd ../ && \
+    screen -dmS KO-ON-core python3 core.py 1 && \
+    tail -f /dev/null
