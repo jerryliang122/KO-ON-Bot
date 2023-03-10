@@ -1,5 +1,5 @@
 # 设置基础镜像
-FROM python:3.10.10-slim-buster
+FROM node:18.14.2
 
 # 在容器内部创建工作目录
 WORKDIR /app
@@ -9,7 +9,7 @@ ADD . /app
 
 # 安装依赖项
 RUN apt-get update && \
-    apt-get install -y nodejs npm screen && \
+    apt-get install -y screen python3 python3-pip ffmpeg && \
     npm install --prefix ./MiguMusicApi && \
     npm install --prefix ./QQMusicApi && \
     pip install -r requirements.txt
