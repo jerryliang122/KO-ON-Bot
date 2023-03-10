@@ -12,6 +12,7 @@ RUN apt-get update && \
     apt-get install -y screen python3 python3-pip ffmpeg && \
     npm install --prefix ./MiguMusicApi && \
     npm install --prefix ./QQMusicApi && \
+    npm install --prefix ./NeteaseCloudMusicApi && \
     pip install -r requirements.txt
 
 # 设置环境变量
