@@ -4,9 +4,10 @@ FROM python:3.10.10-slim-buster
 
 
 # 安装依赖项
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+RUN apt-get update && \
+    apt-get install -y wget curl && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && \
     apt-get install -y screen yarn 
 
 # 安装ffmpeg
