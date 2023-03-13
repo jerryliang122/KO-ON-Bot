@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y wget curl gnupg && \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get install -y screen yarn 
+    apt-get install -y screen yarn gcc g++ make pkg-config libx264-dev libx265-dev libvpx-dev
 
 # 安装ffmpeg
 RUN wget https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz && \
