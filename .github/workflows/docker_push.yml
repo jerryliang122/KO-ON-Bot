@@ -1,4 +1,4 @@
-name: Build Docker Image
+name: Build Docker Image and push to hub
 
 # push tag 时触发执行
 on:
@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           # 是否 docker push
-          push: true
+          push: false
           # 生成多平台镜像, see https://github.com/docker-library/bashbrew/blob/v0.1.1/architecture/oci-platform.go
           platforms: |
             linux/amd64
