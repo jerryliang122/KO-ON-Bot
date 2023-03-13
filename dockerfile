@@ -1,20 +1,41 @@
 # 设置基础镜像
-FROM node:18.14.2
+FROM python:3.10.10-slim-buster
 
+
+
+# 安装依赖项
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install -y screen yarn 
+
+# 安装ffmpeg
+RUN wget https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz && \
+    tar xzvf opus-1.3.1.tar.gz  && \
+    cd opus-1.3.1  && \
+    ./configure  && \
+    make && make install  
+RUN wget https://github.com/zeromq/libzmq/releases/download/v4.3.4/zeromq-4.3.4.tar.gz  && \
+    tar xzvf zeromq-4.3.4.tar.gz && \
+    cd zeromq-4.3.4 && \
+    ./configure && \
+    make && make install
+RUN wget http://www.ffmpeg.org/releases/ffmpeg-4.3.2.tar.gz && \
+    tar -xvf ffmpeg-4.3.2.tar.gz && \
+    cd ffmpeg-4.3.2/ && \
+    ./configure --enable-libopus --enable-libzmq  && \
+    make && make install
 # 在容器内部创建工作目录
 WORKDIR /app
 
 # 将本地文件添加到工作目录中
 ADD . /app
 
-# 安装依赖项
-RUN apt-get update && \
-    apt-get install -y screen python3 python3-pip ffmpeg && \
-    npm install --prefix ./MiguMusicApi && \
-    npm install --prefix ./QQMusicApi && \
-    npm install --prefix ./NeteaseCloudMusicApi && \
-    pip install -r requirements.txt
-
+# 安装依赖
+RUN pip3 install -r requirements.txt &&\
+    cd MiguMusicApi && yarn install && cd ../ && \
+    cd QQMusicApi && yarn install && cd ../ && \
+    cd NeteaseCloudMusicApi && yarn install && cd ../
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1
 
