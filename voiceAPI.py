@@ -125,10 +125,10 @@ class Voice:
                     now = 3
                 elif now == 3:
                     print('3:', data)
-                    transport_id = data['data']['id']
                     ip = data['data']['ip']
                     port = data['data']['port']
                     rtcp_port = data['data']['rtcpPort']
+                    transport_id = data['data']['id']
                     payload['4']['data']['transportId'] = transport_id
                     self.ssrc = payload['4']['data']['rtpParameters']['encodings'][
                         0]['ssrc']
@@ -139,12 +139,9 @@ class Voice:
                     print('4:', data)
                     self.rtp_url = f'rtp://{ip}:{port}?rtcpport={rtcp_port}'
                     now = 5
-                else:
-                    if 'notification' in data and 'method' in data and data[
+                elif 'notification' in data and 'method' in data and data[
                             'method'] == 'disconnect':
-                        print('The connection had been disconnected', data)
-                    else:
-                        pass
+                    print('The connection had been disconnected', data)
             await asyncio.sleep(0.1)
 
     async def ws_ping(self):

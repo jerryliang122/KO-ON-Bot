@@ -96,11 +96,10 @@ async def timeout():
                         result[signatures] = "ACCEPT"
                         logger.info("ACCEPT")
                         continue
-                else:
-                    if i == botnum:
-                        result[signatures] = "REPORT"
-                        logger.info("REPORT")
-                        continue
+                elif i == botnum:
+                    result[signatures] = "REPORT"
+                    logger.info("REPORT")
+                    continue
                 logger.info("REFUSE")
                 i += 1
 
